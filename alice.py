@@ -150,7 +150,7 @@ def main():
     welcome()
     while True:
         query = command().lower()
-        #lower char for search google
+        #lower char for search googlep
         if compareList(keywords["google"], query) == 2:
             visitGoogle()
         elif compareList(keywords["youtube"], query) == 2:
