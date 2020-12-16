@@ -3,6 +3,7 @@ import datetime
 import speech_recognition as sr
 import webbrowser as wb
 import os
+import random
 
 alice = pyttsx3.init()
 voice = alice.getProperty('voices')
@@ -94,9 +95,17 @@ def visitLove():
         "Meeting you is the best thing that ever happened to me.",
         "You’re my everything.",
         "You’re my one and only.",
-        
+        "You’re the love of my life",
+        "You are too good to be true!",
+        "I looked at your face and my heart jumped all over the place.",
+        "I love you with know how, why, or even from where",
+        "Do you even realize how much I love you?",
+        "There are 12 months a year … 30 days a month … 7 days a week….24 hours a day….60 minutes an hour….but only one I love.",
+        "I would not care if the sun did not shine, I would not care if it did not rain and I would not care if I could not enjoy winter is delight. All I care about is to see your face and feel your presence every single day in my life.",
+        "Love is like the air, we can not always see it but we know it is always there! That is like me, you can not always see me but I am always there and you know I will always love you! "
     ]
-    speak(f"I love you so much!")
+    idx = random.randrange(0,len(listSpeech) - 1)
+    speak(listSpeech[idx])
 
 keywords = {
     "google": ["open", "google"],
