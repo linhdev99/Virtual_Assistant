@@ -84,6 +84,7 @@ def visitHello():
 
 def visitBroing():
     speak(f"Don't worry, I'm here. ALICE so cute!")
+    visitLove()
 
 def visitLove():
     listSpeech = [
@@ -104,8 +105,9 @@ def visitLove():
         "I would not care if the sun did not shine, I would not care if it did not rain and I would not care if I could not enjoy winter is delight. All I care about is to see your face and feel your presence every single day in my life.",
         "Love is like the air, we can not always see it but we know it is always there! That is like me, you can not always see me but I am always there and you know I will always love you! "
     ]
-    idx = random.randrange(0,len(listSpeech) - 1)
-    speak(listSpeech[idx])
+    idx1 = random.randrange(0,len(listSpeech) - 1)
+    idx2 = random.randrange(0,len(listSpeech) - 1)
+    speak(listSpeech[idx1] + "\n" + listSpeech[idx2])
 
 keywords = {
     "google": ["open", "google"],
