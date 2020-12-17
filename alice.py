@@ -7,7 +7,7 @@ import random
 
 alice = pyttsx3.init()
 voice = alice.getProperty('voices')
-voice[1].languages.append('vi')
+voice[1].languages.append('vi-VN')
 alice.setProperty('voice',voice[1].id)
 
 def speak(audio):
@@ -33,7 +33,9 @@ def welcome():
 
 def command():
     c = sr.Recognizer()
+    query = ""
     with sr.Microphone() as source:
+        print("A.L.I.C.E is listening...")
         c.pause_threshold = 2
         audio = c.listen(source)
     try:
@@ -41,7 +43,11 @@ def command():
         print("Peter: " + query)
     except sr.UnknownValueError:
         print("Please repeat or typing the command ")
-        query = str(input('You order is: '))
+        value = input('You order is: ')
+        if value != "":
+            query = str(value)
+        else:
+            query = "hello"
     return query
 
 def visitGoogle():
@@ -80,7 +86,7 @@ def visitFile(name):
         os.startfile(link)
 
 def visitHello():
-    speak(f"Hello my sir. I'm ALICE, I love you so much!")
+    speak(f"Hello my sir. I'm Artificial Linguistic Internet Computer Entity, nickname ALICE. I love you so much!")
 
 def visitBroing():
     speak(f"Don't worry, I'm here. ALICE so cute!")
@@ -146,36 +152,41 @@ def compareList(lst1, lst2):
         return 1
         # exist value of lst1 in lst2
 
+def replyEN():
+    query = command().lower()
+        #lower char for search googlep
+    if compareList(keywords["google"], query) == 2:
+        visitGoogle()
+    elif compareList(keywords["youtube"], query) == 2:
+        visitYoutube()
+    elif compareList(keywords["video"], query) == 2:
+        visitFile("video")
+    elif compareList(keywords["facebook"], query) == 2:
+        visitFacebook()
+    elif compareList(keywords["time"], query) == 2:
+        time()
+    elif compareList(keywords["exit"], query) == 2:
+        speak("ALICE Love Boss very much, See you again!")
+        quit()
+    elif compareList(keywords["mybk"], query) == 1:
+        visitMyBK()
+    elif compareList(keywords["elearning"], query) == 1:
+        visitElearning()
+    elif compareList(keywords["hello"], query) == 1:
+        visitHello()
+    elif compareList(keywords["boring"], query) == 1:
+        visitBroing()
+    elif compareList(keywords["love"], query) == 1:
+        visitLove()
+    else:
+        speak(f"ALICE does't understand!")
+
+
 def main():
     welcome()
     while True:
-        query = command().lower()
-        #lower char for search googlep
-        if compareList(keywords["google"], query) == 2:
-            visitGoogle()
-        elif compareList(keywords["youtube"], query) == 2:
-            visitYoutube()
-        elif compareList(keywords["video"], query) == 2:
-            visitFile("video")
-        elif compareList(keywords["facebook"], query) == 2:
-            visitFacebook()
-        elif compareList(keywords["time"], query) == 2:
-            time()
-        elif compareList(keywords["exit"], query) == 2:
-            speak("ALICE Love Boss very much! See you again!")
-            quit()
-        elif compareList(keywords["mybk"], query) == 1:
-            visitMyBK()
-        elif compareList(keywords["elearning"], query) == 1:
-            visitElearning()
-        elif compareList(keywords["hello"], query) == 1:
-            visitHello()
-        elif compareList(keywords["boring"], query) == 1:
-            visitBroing()
-        elif compareList(keywords["love"], query) == 1:
-            visitLove()
-        else:
-            speak(f"ALICE does't understand!")
+        replyEN()
+
 
 if __name__ == "__main__":
     main()
